@@ -67,43 +67,44 @@ const languageDialog = document.getElementById('language-dialog');
 const languageOptionsContainer = document.getElementById('language-options');
 const closeButton = document.getElementById('btn-dialog-close');
 
-let deathYear = null;
-const deathYearDialog = document.getElementById('death-year-dialog');
-const deathYearInput = document.getElementById('death-year');
-const submitDeathYear = document.getElementById('submit-death-year');
-const btnDeathDialogClose = document.getElementById('btn-death-dialog-close');
+let targetYear = null;
+const targetYearDialog = document.getElementById('target-year-dialog');
+const targetYearInput = document.getElementById('target-year');
+const submittargetYear = document.getElementById('submit-target-year');
+const btntargetDialogClose = document.getElementById('btn-target-dialog-close');
 const countdownTimer = document.getElementById('countdown-timer');
 
-// Show death year dialog on page load
+// Show target year dialog on page load
 window.addEventListener('load', () => {
-  deathYearDialog.showModal();
+  targetYearDialog.showModal();
 });
 
-// Handle death year submission
-submitDeathYear.addEventListener('click', () => {
-  const year = parseInt(deathYearInput.value);
-  if (year >= 2024 && year <= 2100) {
-    deathYear = year;
-    deathYearDialog.close();
+// Handle target year submission
+submittargetYear.addEventListener('click', () => {
+  const year = parseInt(targetYearInput.value);
+  if (year >= 2024 && year <= 2125) {  // Updated upper limit to 2125
+    targetYear = year;
+    targetYearDialog.close();
     updateCountdownTimer();
     setInterval(updateCountdownTimer, 1000);
   } else {
-    alert('Please enter a year between 2024 and 2100');
+    alert('Please enter a year between 2024 and 2125');  // Updated message
   }
 });
 
-// Handle death year dialog close
-btnDeathDialogClose.addEventListener('click', () => {
-  deathYearDialog.close();
+
+// Handle target year dialog close
+btntargetDialogClose.addEventListener('click', () => {
+  targetYearDialog.close();
 });
 
 // Update countdown timer
 function updateCountdownTimer() {
-  if (!deathYear) return;
+  if (!targetYear) return;
   
   const now = new Date();
-  const deathDate = new Date(deathYear, 0, 1); // January 1st of death year
-  const timeLeft = deathDate - now;
+  const targetDate = new Date(targetYear, 0, 1); // January 1st of target year
+  const timeLeft = targetDate - now;
 
   if (timeLeft <= 0) {
     countdownTimer.textContent = 'Time\'s up!';
@@ -172,10 +173,11 @@ function drawClockFaces() {
                 valueSet = monthNames;
                 currentValue = currentMonth;
                 break;
-            case 'years':
-                valueSet = Array.from({ length: 101 }, (_, i) => 2000 + i);
-                currentValue = currentYear;
-                break;
+                case 'years':
+                  valueSet = Array.from({ length: 126 }, (_, i) => 2000 + i);
+                  currentValue = currentYear;
+                  break;
+              
             case 'day-names':
                 valueSet = weekdayNames;
                 currentValue = currentWeekday;
@@ -192,8 +194,8 @@ function drawClockFaces() {
             const element = document.createElement('span');
             element.classList.add('number');
             
-            // Add 'dead' class to years that are past the death year
-            if (clockType === 'years' && deathYear && parseInt(value) >= deathYear) {
+            // Add 'dead' class to years that are past the target year
+            if (clockType === 'years' && targetYear && parseInt(value) >= targetYear) {
                 element.classList.add('dead');
             }
             
