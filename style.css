@@ -278,7 +278,7 @@ dialog .btn-dialog-close {
   overflow: hidden;
 }
 
-.death-year-input-container {
+.target-year-input-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -286,13 +286,13 @@ dialog .btn-dialog-close {
   padding: 2rem;
 }
 
-.death-year-input-container h2 {
+.target-year-input-container h2 {
   color: white;
   margin: 0;
   text-align: center;
 }
 
-.death-year-input-container input {
+.target-year-input-container input {
   padding: 0.5rem;
   font-size: 1.2rem;
   width: 200px;
@@ -303,7 +303,7 @@ dialog .btn-dialog-close {
   border-radius: 4px;
 }
 
-.death-year-input-container button {
+.target-year-input-container button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   background: var(--clock-clr);
@@ -314,7 +314,7 @@ dialog .btn-dialog-close {
   transition: background-color 0.3s;
 }
 
-.death-year-input-container button:hover {
+.target-year-input-container button:hover {
   background: rgb(8, 47, 73);
 }
 
